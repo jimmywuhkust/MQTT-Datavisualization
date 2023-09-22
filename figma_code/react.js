@@ -1,4 +1,4 @@
-var water_consum = 700; // in ml
+var water_consum = 0; // in ml
 
 // Function to get the current date in the user's local timezone with format: 23th September 2023
 function get_date() {

@@ -107,7 +107,7 @@ function draw_line(){
 }
 
 function draw() {
-background(0);
+background(192,225,248);
     
   var t = ((frame_count)%NB_FRAMES)/NB_FRAMES;
 
