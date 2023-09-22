@@ -1,0 +1,154 @@
+/* Styles for the .main container */
+.main {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background: linear-gradient(0deg, white 0%, white 100%);
+    background-image: url(figma_code/image/figma_bg.png);
+}
+
+/* Styles for the date element */
+.date {
+    left: 89px;
+    top: 192px;
+    position: absolute;
+    color: black;
+    font-size: 32px;
+    font-family: Jost;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* Styles for the time element */
+.time {
+    left: 89px;
+    top: 111px;
+    position: absolute;
+    color: black;
+    font-size: 64px;
+    font-family: Jost;
+    font-weight: 700;
+    word-wrap: break-word;
+}
+
+/* Styles for the SVG container */
+.Mysvg91 {
+    width: 609px;
+    left: 89px;
+    top: 264px;
+    position: absolute;
+    border-radius: 10px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+}
+
+/* Styles for the vectors within the SVG container */
+.Vector {
+    position: absolute;
+    border: 1px white solid;
+    background: #C0E1F8;
+}
+
+/* Styles for the seed element */
+.Seed11 {
+    width: 59.68px;
+    height: 18.30px;
+    left: 12.18px;
+    top: 0px;
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* Styles for the rectangle element */
+.Rectangle26 {
+    width: 437px;
+    height: 466px;
+    left: 764px;
+    top: 164px;
+    position: absolute;
+    background: rgba(238, 247, 252, 0.70);
+    border-radius: 10px;
+}
+
+/* Styles for the water consumption text */
+.WaterConsumption {
+    left: 817px;
+    top: 217px;
+    position: absolute;
+    color: black;
+    font-size: 36px;
+    font-family: Jost;
+    font-weight: 700;
+    word-wrap: break-word;
+}
+
+/* Styles for the water drop container */
+.Drop {
+    width: 161px;
+    height: 198.57px;
+    left: 801px;
+    top: 337px;
+    position: absolute;
+}
+
+/* Styles for the "x 13" text */
+.X13 {
+    left: 967px;
+    top: 499px;
+    position: absolute;
+    color: black;
+    font-size: 24px;
+    font-family: Jost;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* Styles for the "500mL" text */
+.Ml {
+    left: 1095px;
+    top: 499px;
+    position: absolute;
+    color: black;
+    font-size: 24px;
+    font-family: Jost;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* Styles for the water bottle container */
+.Bottle {
+    width: 40px;
+    height: 98.95px;
+    left: 1033px;
+    top: 436px;
+    position: absolute;
+}
+
+/* Styles for the bottle vectors */
+.Vector1 {
+    width: 25.26px;
+    height: 61.05px;
+    left: 7.37px;
+    top: 31.58px;
+    position: absolute;
+    background: #6CC4FF;
+    border: 1px #6CC4FF solid;
+}
+
+/* Styles for the text below the bottle */
+.TheWaterYouHaveUsedCanFill13Bottle {
+    left: 782px;
+    top: 570px;
+    position: absolute;
+    color: black;
+    font-size: 22px;
+    font-family: Jost;
+    font-weight: 500;
+    word-wrap: break-word;
+}
