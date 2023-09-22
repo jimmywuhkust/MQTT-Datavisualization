@@ -1,14 +1,14 @@
 /* Styles for the .main container */
-.main {
+.Main {
     width: 1280px;
     height: 720px;
     position: relative;
     background: linear-gradient(0deg, white 0%, white 100%);
-    background-image: url(figma_code/image/figma_bg.png);
+    background-image: url(https://raw.githubusercontent.com/jimmywuhkust/MQTT-Datavisualization/main/figma_code/image/figma_bg.png?token=GHSAT0AAAAAACHHVNO3YWPU4PKDVGQIBTKCZINK3EA);
 }
 
 /* Styles for the date element */
-.date {
+.Date {
     left: 89px;
     top: 192px;
     position: absolute;
@@ -20,7 +20,7 @@
 }
 
 /* Styles for the time element */
-.time {
+.Time {
     left: 89px;
     top: 111px;
     position: absolute;
@@ -32,7 +32,7 @@
 }
 
 /* Styles for the SVG container */
-.Mysvg91 {
+.Datastream {
     width: 609px;
     left: 89px;
     top: 264px;
@@ -51,22 +51,8 @@
     background: #C0E1F8;
 }
 
-/* Styles for the seed element */
-.Seed11 {
-    width: 59.68px;
-    height: 18.30px;
-    left: 12.18px;
-    top: 0px;
-    position: absolute;
-    color: white;
-    font-size: 12px;
-    font-family: Inter;
-    font-weight: 400;
-    word-wrap: break-word;
-}
-
 /* Styles for the rectangle element */
-.Rectangle26 {
+.Rectangle {
     width: 437px;
     height: 466px;
     left: 764px;
@@ -97,8 +83,8 @@
     position: absolute;
 }
 
-/* Styles for the "x 13" text */
-.X13 {
+/* Styles for the "num of botte" text */
+.Numofbotte {
     left: 967px;
     top: 499px;
     position: absolute;
@@ -109,8 +95,8 @@
     word-wrap: break-word;
 }
 
-/* Styles for the "500mL" text */
-.Ml {
+/* Styles for the "capacity" text */
+.Capacity {
     left: 1095px;
     top: 499px;
     position: absolute;
@@ -130,19 +116,8 @@
     position: absolute;
 }
 
-/* Styles for the bottle vectors */
-.Vector1 {
-    width: 25.26px;
-    height: 61.05px;
-    left: 7.37px;
-    top: 31.58px;
-    position: absolute;
-    background: #6CC4FF;
-    border: 1px #6CC4FF solid;
-}
-
 /* Styles for the text below the bottle */
-.TheWaterYouHaveUsedCanFill13Bottle {
+.Systemmessage {
     left: 782px;
     top: 570px;
     position: absolute;
