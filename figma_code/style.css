@@ -4,7 +4,7 @@
     height: 720px;
     position: relative;
     background: linear-gradient(0deg, white 0%, white 100%);
-    background-image: url(https://raw.githubusercontent.com/jimmywuhkust/MQTT-Datavisualization/main/figma_code/image/figma_bg.png?token=GHSAT0AAAAAACHHVNO3YWPU4PKDVGQIBTKCZINK3EA);
+    background-image: url("image/figma_bg.png");
 }
 
 /* Styles for the date element */
@@ -34,8 +34,9 @@
 /* Styles for the SVG container */
 .Datastream {
     width: 609px;
+    height: 368px;
     left: 89px;
-    top: 264px;
+    top: 268px;
     position: absolute;
     border-radius: 10px;
     overflow: hidden;
@@ -44,12 +45,6 @@
     display: inline-flex;
 }
 
-/* Styles for the vectors within the SVG container */
-.Vector {
-    position: absolute;
-    border: 1px white solid;
-    background: #C0E1F8;
-}
 
 /* Styles for the rectangle element */
 .Rectangle {
