@@ -14,7 +14,7 @@ function draw() {
     background(180,0,30);
     rotateY(frameCount * 0.01);
 
-    for (let j = 0; j < Math.floor(waterflow / 10); j++) {
+    for (let j = 0; j < Math.floor(waterflow % 15); j++) {
         push();
         for (let i = 0; i < 80; i++) {
             translate(

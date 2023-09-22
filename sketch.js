@@ -10,9 +10,9 @@ var cnv;
 var wid = 500;
 var hei = 300;
 
-var NB_FRAMES = 100;
+var NB_FRAMES = 60;
 
-var frame_count = 0;
+var frame_count = 60;
 
 function activation(t) {
     return ((1-cos(2*PI*t))/2)**1;
@@ -22,14 +22,14 @@ function activation(t) {
 
 function setup() {
 
-  curSeed = 11;
+    curSeed = 164;
     noiseSeed(curSeed);
     randomSeed(1);
     
-   createCanvas(wid,hei,SVG);
-      strokeWeight(1);   // do 0.1 for laser
+    createCanvas(wid,hei,SVG);
+    strokeWeight(1);   // do 0.1 for laser
     stroke(255,0,0);      // red is good for laser
-  noFill();
+    noFill();
     //cnv.parent("canvas");
     
     background(0);
@@ -87,21 +87,35 @@ function object(id) {
 }
 
 var Objects = [];
-var NB = 100;
+var NB = 50;
+var objectIndex = 0;
 
-function mousePressed(){
-    curSeed = floor(random()*10000);
-    noiseSeed(curSeed);
-    console.log(curSeed);
+// function mousePressed(){
+//     curSeed = floor(random()*10000);
+//     noiseSeed(curSeed);
+//     console.log(curSeed);
+// }
+
+function draw_line(){
+  for (var i = 0; i<5; i++){
+  if (objectIndex < NB){
+    Objects[objectIndex].draw(); // Draw the current object
+    objectIndex++; // Move to the next object
+
+    // draw_line()
+  }}
 }
-
 
 function draw() {
 background(0);
     
-    var t = ((frame_count)%NB_FRAMES)/NB_FRAMES;
-    
-    for(var i=0;i<NB;i++) Objects[i].draw();
+  var t = ((frame_count)%NB_FRAMES)/NB_FRAMES;
+
+  for (var i = 0; i < NB; i++){ // can draw repeatly in every loop in draw function
+    Objects[i].draw();
+  }
+
+  // draw_line() //  somehow can only draw once for 5 lines
   
   noStroke();
   fill(255);
