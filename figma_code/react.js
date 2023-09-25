@@ -1,4 +1,5 @@
 var water_consum = 0; // in ml
+var flow_rate = 1000;
 
 // Function to get the current date in the user's local timezone with format: 23th September 2023
 function get_date() {
@@ -25,7 +26,7 @@ function padZero(num) {
 }
 
 function flow_update(data){
-  date = date * 1000;
+  data = data * flow_rate;
   water_consum = water_consum + data/60;
   console.log('total water consumtion: ' + water_consum);
 }
@@ -37,4 +38,14 @@ function get_bottle() {
   num_bottle = num_bottle.toFixed(1);
   console.log('update num of bottle:' + num_bottle);
   return num_bottle;
+}
+
+function change_mode() {
+  if (flow_rate == 1000){
+    flow_rate = 5000;
+  }
+  else {
+    flow_rate = 1000;
+  }
+    
 }

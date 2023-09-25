@@ -7,6 +7,15 @@
     background-image: url("image/figma_bg.png");
 }
 
+.buttons {
+    border-radius: 100%;
+    background-image: url("image/icon.svg");
+    width: 100px; 
+    height: 100px;
+    border: none; 
+    cursor: pointer;
+}
+
 /* Styles for the date element */
 .Date {
     left: 89px;
