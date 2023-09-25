@@ -6,89 +6,93 @@ this will save an SVG file in your download folder
 */
 
 var cnv;
+var Objects = [];
+var NB = 40;
 
 var wid = 609;
 var hei = 368;
 
-var NB_FRAMES = 60;
+var NB_FRAMES = 200; // *************smaller NB_FRAMES faster reaction, while higher will make slower*************
 
 var frame_count = 60;
 
-function activation(t) {
-    return ((1-cos(2*PI*t))/2)**1;
+function graph_update (){ // *************this function will update the NB_FRAMES every draw loop by mqtt data*************
+  NB_FRAMES = 60 / water_flow;
+  NB_FRAMES = NB_FRAMES.toFixed(0)
+  console.log('NB_FRAMES:', NB_FRAMES);
+  return NB_FRAMES
 }
 
+function activation(t) {
+  return ((1 - cos(2 * PI * t)) / 2) ** 1;
+}
 
 
 function setup() {
 
-    curSeed = 11;
-    noiseSeed(curSeed);
-    randomSeed(1);
-    
-    createCanvas(wid,hei,SVG);
-    strokeWeight(1);   // do 0.1 for laser
-    stroke(255,0,0);      // red is good for laser
-    noFill();
-    //cnv.parent("canvas");
-    
-    background(0);
-    
-    for(var i = 0;i<NB;i++) {
-        Objects[i] = new object(i);
-    
-}
-             // better not to have a fill for laser
+  curSeed = 11;
+  noiseSeed(curSeed);
+  randomSeed(1);
+
+  createCanvas(wid, hei, SVG);
+  strokeWeight(1);   // do 0.1 for laser
+  stroke(255, 0, 0);      // red is good for laser
+  noFill();
+  //cnv.parent("canvas");
+
+  background(0);
+
+  for (var i = 0; i < NB; i++) {
+    Objects[i] = new object(i);
+
+  }
+  // better not to have a fill for laser
 }
 
 function object(id) {
-    
-    this.id = id;
-    
-    this.draw = function() {
-        var t = ((frame_count)%NB_FRAMES)/NB_FRAMES;
-        
-        var x0 = lerp(0,wid,this.id/NB);
-        
-        theta = PI/2;
-        
-        var xx = x0;
-        var yy = 0;
-        
-        var Nt = 75;
-        
-        var step = hei/Nt;
-        
-        var turn = lerp(0,0.4,activation((this.id/NB+0*t)%1));
-        
-        stroke(255);
-        strokeWeight(1);
-        noFill();
-        beginShape();
-        
-        vertex(xx,yy);
 
-        
-        for(var i=0;i<=Nt;i++){
-            theta += turn*sin(100*noise(1000)+2*PI*(15*noise(0.2*this.id/NB,0.02*i)+t));
-            xx += step*cos(theta);
-            yy += step*sin(theta);
-            
-            var xx2 = lerp(xx,x0,(i/Nt)*(i/Nt)*(i/Nt));
-            var yy2 = lerp(yy,lerp(0,hei-0,i/Nt),max((i/Nt),1-sqrt(i/Nt)));
-            
-            vertex(xx2,yy2);
-            
-            
-        }
-        endShape();
-        
+  this.id = id;
+
+  this.draw = function (NB_FRAMES) {// *************force it use the latest NB_FRAMES to count the rate*************
+    var t = ((frame_count) % NB_FRAMES) / NB_FRAMES;
+
+    var x0 = lerp(0, wid, this.id / NB);
+
+    theta = PI / 2;
+
+    var xx = x0;
+    var yy = 0;
+
+    var Nt = 75; // this can change the drawing style // original (Nt = 75)
+
+    var step = hei / Nt;
+
+    var turn = lerp(0, 0.4, activation((this.id / NB + 0 * t) % 1));
+
+    stroke(255);
+    strokeWeight(1);
+    noFill();
+    beginShape();
+
+    vertex(xx, yy);
+
+
+    for (var i = 0; i <= Nt; i++) {
+      theta += turn * sin(100 * noise(1000) + 2 * PI * (15 * noise(0.2 * this.id / NB, 0.02 * i) + t));
+      xx += step * cos(theta);
+      yy += step * sin(theta);
+
+      var xx2 = lerp(xx, x0, (i / Nt) * (i / Nt) * (i / Nt));
+      var yy2 = lerp(yy, lerp(0, hei - 0, i / Nt), max((i / Nt), 1 - sqrt(i / Nt)));
+
+      vertex(xx2, yy2);
+
+
     }
-}
+    endShape();
 
-var Objects = [];
-var NB = 50;
-var objectIndex = 0;
+  }
+}
 
 // function mousePressed(){
 //     curSeed = floor(random()*10000);
@@ -96,39 +100,24 @@ var objectIndex = 0;
 //     console.log(curSeed);
 // }
 
-function draw_line(){
-  for (var i = 0; i<5; i++){
-  if (objectIndex < NB){
-    Objects[objectIndex].draw(); // Draw the current object
-    objectIndex++; // Move to the next object
-
-    // draw_line()
-  }}
-}
-
 function draw() {
-background(192,225,248);
-    
-  var t = ((frame_count)%NB_FRAMES)/NB_FRAMES;
+  background(192, 225, 248);
 
-  for (var i = 0; i < NB; i++){ // can draw repeatly in every loop in draw function
-    Objects[i].draw();
+  NB_FRAMES = graph_update();
+  for (var i = 0; i < NB; i++) { 
+    Objects[i].draw(NB_FRAMES);
   }
 
-  // draw_line() //  somehow can only draw once for 5 lines
-  
   noStroke();
   fill(255);
-  	text("seed : " + curSeed, 10, 10);
+  text("seed : " + curSeed, 10, 10);
 
-    frame_count++;
-    if (frame_count<=100 && frame_count>80) {
-        
-    }
-  
+  frame_count++;
+
   //////////////////////////////////////EXPORT
-  if (keyCode === LEFT_ARROW){
-      save("mySVG.svg");
-    print ("saved svg");
-  noLoop();	}
+  if (keyCode === LEFT_ARROW) {
+    save("mySVG.svg");
+    print("saved svg");
+    noLoop();
+  }
 }
