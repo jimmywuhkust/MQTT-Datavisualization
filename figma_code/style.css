@@ -1,19 +1,27 @@
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
+
 /* Styles for the .main container */
 .Main {
-    width: 1280px;
-    height: 720px;
+    /* Fill the entire screen */
+    width: 100vw;
+    height: 100vh;
     position: relative;
-    background: linear-gradient(0deg, white 0%, white 100%);
-    background-image: url("image/figma_bg.png");
+    display: flex;
+    
 }
 
-.buttons {
-    border-radius: 100%;
-    background-image: url("image/icon.svg");
-    width: 100px; 
-    height: 100px;
-    border: none; 
-    cursor: pointer;
+/* Styles for the background image */
+.Main::before {    
+    content: "";
+    background-image: url('image/figma_bg.png');
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.2;
 }
 
 /* Styles for the date element */
@@ -57,8 +65,8 @@
 
 /* Styles for the rectangle element */
 .Rectangle {
-    width: 437px;
-    height: 466px;
+    width: 466px;
+    height: 464px;
     left: 764px;
     top: 164px;
     position: absolute;
@@ -102,7 +110,7 @@
 /* Styles for the "capacity" text */
 .Capacity {
     left: 1095px;
-    top: 499px;
+    top: 507px;
     position: absolute;
     color: black;
     font-size: 24px;
@@ -115,14 +123,14 @@
 .Bottle {
     width: 40px;
     height: 98.95px;
-    left: 1033px;
+    left: 1035px;
     top: 436px;
     position: absolute;
 }
 
 /* Styles for the text below the bottle */
 .Systemmessage {
-    left: 782px;
+    left: 800px;
     top: 570px;
     position: absolute;
     color: black;
