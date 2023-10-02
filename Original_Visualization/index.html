@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.min.js"></script>
+    <script src="https://unpkg.com/p5.js-svg@1.5.1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+
+  </head>
+  <body>
+    <script src="sketch.js"></script>
+    <script>
+      const mqttServer = "mqtt.jinfinite.com.hk";
+      const mqttUsername = "greenhub";
+      const mqttPassword = "greenhub";
+      const mqttTopic = "watersensor"; // Replace this with the desired MQTT topic
+
+      const client = mqtt.connect(`ws://${mqttServer}:9001`, {
+          username: mqttUsername,
+          password: mqttPassword
+      });
+
+      client.on('connect', () => {
+          console.log('Connected to MQTT broker');
+          client.subscribe(mqttTopic, (err) => {
+              if (err) {
+                  console.error('Failed to subscribe to MQTT topic:', err);
+              } else {
+                  console.log('Subscribed to MQTT topic:', mqttTopic);
+              }
+          });
+      });
+
+      client.on('message', (topic, message) => {
+          // The message received from MQTT will be a buffer, convert it to a string
+          const data = message.toString();
+          console.log('Received MQTT message:', data);
+          flow_update(data); // Update the UI with the received data
+          
+      });
+  </script>
+  </body>
+</html>
