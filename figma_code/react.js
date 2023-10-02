@@ -27,10 +27,17 @@ function padZero(num) {
 }
 
 function flow_update(data) {
-  water_flow = data;
-  water_consum = water_consum + (water_flow* flow_rate) / 60;
-  console.log('water_flow: ' + water_flow);
-  console.log('total water consumtion: ' + water_consum);
+  water_flow = +data;
+  if (!isNaN(water_flow)){
+    water_consum = water_consum + (water_flow* flow_rate) / 60;
+    console.log('water_flow: ' + water_flow);
+    console.log('total water consumtion: ' + water_consum);
+  }
+  else {
+    console.log("Non number data type received: " + typeof water_flow);
+  }
+  
+  
 }
 
 // get the current date in Hong Kong Time Zone
