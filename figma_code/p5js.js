@@ -33,7 +33,7 @@ function mapRange(value, inputMin, inputMax, outputMin, outputMax) {
 // }
 
 function graph_update (){
-  var seed_idx = mapRange(water_flow, 0, 10, 0, 3);
+  var seed_idx = mapRange(water_consum, 0, 200, 0, 3);
   var last_seed = curSeed;
   curSeed = seed_list[seed_idx];
   if (last_seed == curSeed){

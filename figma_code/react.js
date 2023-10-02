@@ -1,6 +1,4 @@
 var water_consum = 0; // in ml
-var water_flow = 1;
-var flow_rate = 1000;
 
 // Function to get the current date in the user's local timezone with format: 23th September 2023
 function get_date() {
@@ -29,17 +27,15 @@ function padZero(num) {
 function flow_update(data) {
   var datatype = +data;
   if (!isNaN(datatype)){
-    if (data > 10){
-      data = 10;
+    if (data > 200){
+      data = 200;
       console.log("data flow received too large")
     }
-    water_flow = data;
-    water_consum = water_consum + (water_flow* flow_rate) / 60;
-    console.log('water_flow: ' + water_flow);
+    water_consum = data;
     console.log('total water consumtion: ' + water_consum);
   }
   else {
-    console.log("Non number data type received: " + typeof water_flow);
+    console.log("Non number data type received: " + typeof datatype);
   }
   
   
@@ -48,18 +44,8 @@ function flow_update(data) {
 // get the current date in Hong Kong Time Zone
 function get_bottle() {
   var num_bottle;
-  num_bottle = water_consum / 500;
+  num_bottle = water_consum * 2; // L x 1000ml / 500ml per bottle
   num_bottle = num_bottle.toFixed(1);
   console.log('update num of bottle:' + num_bottle);
   return num_bottle;
-}
-
-function change_mode() {
-  if (flow_rate == 1000) {
-    flow_rate = 5000;
-  }
-  else {
-    flow_rate = 1000;
-  }
-
 }
