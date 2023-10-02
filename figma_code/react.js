@@ -27,8 +27,13 @@ function padZero(num) {
 }
 
 function flow_update(data) {
-  water_flow = +data;
-  if (!isNaN(water_flow)){
+  var datatype = +data;
+  if (!isNaN(datatype)){
+    if (data > 10){
+      data = 10;
+      console.log("data flow received too large")
+    }
+    water_flow = data;
     water_consum = water_consum + (water_flow* flow_rate) / 60;
     console.log('water_flow: ' + water_flow);
     console.log('total water consumtion: ' + water_consum);

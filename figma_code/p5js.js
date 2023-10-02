@@ -8,19 +8,38 @@ this will save an SVG file in your download folder
 var cnv;
 var Objects = [];
 var NB = 40;
+var seed_list = [164, 505, 5906, 8369]
 
 var wid = 609;
 var hei = 368;
 
-var NB_FRAMES = 200; // *************smaller NB_FRAMES faster reaction, while higher will make slower*************
+var NB_FRAMES = 60; // *************smaller NB_FRAMES faster reaction, while higher will make slower*************
 
 var frame_count = 60;
 
-function graph_update (){ // *************this function will update the NB_FRAMES every draw loop by mqtt data*************
-  NB_FRAMES = 60 / water_flow;
-  NB_FRAMES = NB_FRAMES.toFixed(0)
-  console.log('NB_FRAMES:', NB_FRAMES);
-  return NB_FRAMES
+function mapRange(value, inputMin, inputMax, outputMin, outputMax) {
+  const inputRange = inputMax - inputMin;
+  const outputRange = outputMax - outputMin;
+  const scaledValue = (value - inputMin) / inputRange;
+  const mappedValue = scaledValue * outputRange + outputMin;
+  return Math.round(mappedValue);
+}
+
+// function graph_update (){ // *************this function will update the NB_FRAMES every draw loop by mqtt data*************
+//   NB_FRAMES = 60 / water_flow;
+//   NB_FRAMES = NB_FRAMES.toFixed(0)
+//   console.log('NB_FRAMES:', NB_FRAMES);
+//   return NB_FRAMES
+// }
+
+function graph_update (){
+  var seed_idx = mapRange(water_flow, 0, 10, 0, 3);
+  var last_seed = curSeed;
+  curSeed = seed_list[seed_idx];
+  if (last_seed == curSeed){
+    noiseSeed(curSeed);
+    console.log("curSeed updated to: " + curSeed);
+  }
 }
 
 function activation(t) {
@@ -30,7 +49,7 @@ function activation(t) {
 
 function setup() {
 
-  curSeed = 11;
+  curSeed = 164;
   noiseSeed(curSeed);
   randomSeed(1);
 
@@ -103,7 +122,7 @@ function object(id) {
 function draw() {
   background(192, 225, 248);
 
-  NB_FRAMES = graph_update();
+  graph_update();
   for (var i = 0; i < NB; i++) { 
     Objects[i].draw(NB_FRAMES);
   }
